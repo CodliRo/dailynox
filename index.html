@@ -1,613 +1,691 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dailynox — MIL-First Learning Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dailynox OS</title>
+<!-- fonts loaded in CSS -->
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app" class="dailynox-app">
-        <!-- App Shell -->
-        <aside class="sidebar" id="sidebar">
-            <div class="logo-section">
-                <h1 class="logo">Dailynox</h1>
-                <p class="tagline">MIL-First Learning</p>
+
+<!-- ═══ ONBOARDING ═══ -->
+<div id="onboarding" class="ob-wrap">
+  <div class="ob-card">
+    <div class="ob-logo">dailynox<em>.</em></div>
+    <div class="ob-tagline" id="ob-tagline">tập trung từng ngày</div>
+
+    <div class="ob-steps">
+      <!-- Step 1: Name -->
+      <div class="ob-step active" id="ob-step-1">
+        <div class="ob-q" id="ob-q1">Bạn tên là gì?</div>
+        <input id="ob-name" class="ob-input" type="text" placeholder="Nhập tên của bạn…" maxlength="32" autocomplete="off">
+        <div class="ob-hint" id="ob-hint1">Tên này sẽ xuất hiện trên dashboard của bạn</div>
+      </div>
+
+      <!-- Step 2: Goals -->
+      <div class="ob-step" id="ob-step-2">
+        <div class="ob-q" id="ob-q2">Bạn muốn tập trung vào điều gì?</div>
+        <div class="ob-goals" id="ob-goals">
+          <div class="ob-goal" data-g="study"><div class="ob-goal-label" id="g1">Học tập & kỹ năng</div></div>
+          <div class="ob-goal" data-g="health"><div class="ob-goal-label" id="g2">Sức khoẻ & tinh thần</div></div>
+          <div class="ob-goal" data-g="career"><div class="ob-goal-label" id="g3">Sự nghiệp & việc làm</div></div>
+          <div class="ob-goal" data-g="habit"><div class="ob-goal-label" id="g4">Thói quen cá nhân</div></div>
+          <div class="ob-goal" data-g="reading"><div class="ob-goal-label" id="g5">Đọc sách & nghiên cứu</div></div>
+          <div class="ob-goal" data-g="creative"><div class="ob-goal-label" id="g6">Sáng tạo & nghệ thuật</div></div>
+        </div>
+      </div>
+
+      <!-- Step 3: Preferences -->
+      <div class="ob-step" id="ob-step-3">
+        <div class="ob-q" id="ob-q3">Tuỳ chỉnh giao diện</div>
+        <div class="ob-prefs">
+          <div class="ob-pref-row">
+            <span class="ob-pref-label" id="pref-lang-lbl">Ngôn ngữ</span>
+            <div class="ob-seg" id="langSeg">
+              <div class="ob-seg-opt active" data-lang="vi">Tiếng Việt</div>
+              <div class="ob-seg-opt" data-lang="en">English</div>
             </div>
-            
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="#dashboard" class="nav-link active" data-module="dashboard">📊 Dashboard</a></li>
-                    <li><a href="#source" class="nav-link" data-module="source">📚 Source Hub</a></li>
-                    <li><a href="#notes" class="nav-link" data-module="notes">📝 Notes</a></li>
-                    <li><a href="#journal" class="nav-link" data-module="journal">📖 Journal</a></li>
-                    <li><a href="#flashcards" class="nav-link" data-module="flashcards">🎴 Flashcards</a></li>
-                    <li><a href="#focus" class="nav-link" data-module="focus">🎯 Focus Mode</a></li>
-                    <li><a href="#planner" class="nav-link" data-module="planner">📅 Planner</a></li>
-                    <li><a href="#library" class="nav-link" data-module="library">📦 Library</a></li>
-                    <li><a href="#ai" class="nav-link" data-module="ai">🤖 AI Assistant</a></li>
-                    <li><a href="#analytics" class="nav-link" data-module="analytics">📈 Analytics</a></li>
-                    <li><a href="#community" class="nav-link" data-module="community">👥 Community</a></li>
-                    <li><a href="#files" class="nav-link" data-module="files">📁 Files</a></li>
-                </ul>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <a href="#settings" class="nav-link" data-module="settings">⚙️ Settings</a>
-                <a href="#help" class="nav-link" data-module="help">❓ Help</a>
+          </div>
+          <div class="ob-pref-row">
+            <span class="ob-pref-label" id="pref-theme-lbl">Giao diện</span>
+            <div class="ob-seg" id="themeSeg">
+              <div class="ob-seg-opt active" data-theme="light">Sáng</div>
+              <div class="ob-seg-opt" data-theme="dark">Tối</div>
             </div>
-        </aside>
-        
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="top-header">
-                <div class="header-left">
-                    <button class="menu-toggle" id="menuToggle">☰</button>
-                    <h2 class="page-title" id="pageTitle">Dashboard</h2>
-                </div>
-                <div class="header-right">
-                    <div class="mil-badge" title="Your MIL Competency Score">
-                        <span class="badge-label">MIL Score:</span>
-                        <span class="badge-value" id="milScore">75%</span>
-                    </div>
-                    <div class="user-menu">
-                        <button class="user-btn" id="userBtn">👤</button>
-                    </div>
-                </div>
-            </header>
-            
-            <!-- Module Container -->
-            <div class="content-container">
-                <!-- Dashboard Module -->
-                <section id="dashboard-module" class="module active">
-                    <div class="dashboard-grid">
-                        <!-- Today Summary -->
-                        <div class="card summary-card">
-                            <h3>Today's Summary</h3>
-                            <div class="summary-content">
-                                <div class="stat">
-                                    <span class="stat-label">Study Time</span>
-                                    <span class="stat-value" id="todayStudyTime">2h 15m</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Streak</span>
-                                    <span class="stat-value" id="learningStreak">12 days 🔥</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Source Health -->
-                        <div class="card">
-                            <h3>Source Health</h3>
-                            <div class="health-meter">
-                                <div class="meter-bar">
-                                    <div class="meter-fill" style="width: 68%;"></div>
-                                </div>
-                                <span class="meter-label">68% Credible Sources</span>
-                            </div>
-                        </div>
-                        
-                        <!-- MIL Competency Badge -->
-                        <div class="card mil-badge-card">
-                            <h3>MIL Competency</h3>
-                            <div class="competency-display">
-                                <div class="competency-chart">
-                                    <div class="competency-item">
-                                        <span class="comp-label">Access</span>
-                                        <div class="comp-bar"><div class="comp-fill" style="width: 85%"></div></div>
-                                    </div>
-                                    <div class="competency-item">
-                                        <span class="comp-label">Evaluate</span>
-                                        <div class="comp-bar"><div class="comp-fill" style="width: 72%"></div></div>
-                                    </div>
-                                    <div class="competency-item">
-                                        <span class="comp-label">Create</span>
-                                        <div class="comp-bar"><div class="comp-fill" style="width: 68%"></div></div>
-                                    </div>
-                                    <div class="competency-item">
-                                        <span class="comp-label">Reflect</span>
-                                        <div class="comp-bar"><div class="comp-fill" style="width: 79%"></div></div>
-                                    </div>
-                                    <div class="competency-item">
-                                        <span class="comp-label">Act</span>
-                                        <div class="comp-bar"><div class="comp-fill" style="width: 75%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Recent Notes -->
-                        <div class="card">
-                            <h3>Recent Notes</h3>
-                            <ul class="recent-list">
-                                <li><a href="#">Critical Analysis: Climate Change Sources</a></li>
-                                <li><a href="#">Media Literacy: Identifying Deepfakes</a></li>
-                                <li><a href="#">Research Methods: Cross-Source Validation</a></li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Review Queue -->
-                        <div class="card">
-                            <h3>Review Queue</h3>
-                            <div class="queue-items">
-                                <div class="queue-item">
-                                    <span>Flashcard Deck: MIL Concepts</span>
-                                    <span class="badge">12 cards</span>
-                                </div>
-                                <div class="queue-item">
-                                    <span>Source Verification</span>
-                                    <span class="badge">3 pending</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Source Hub Module -->
-                <section id="source-module" class="module">
-                    <div class="module-header">
-                        <h2>Source Hub — Evaluate & Verify Information</h2>
-                        <button class="btn btn-primary" id="addSourceBtn">+ Add Source</button>
-                    </div>
-                    
-                    <div class="source-hub-grid">
-                        <!-- Add Source Form -->
-                        <div class="card source-input-card" id="sourceForm" style="display: none;">
-                            <h3>Add New Source</h3>
-                            <div class="form-group">
-                                <label>Source Type</label>
-                                <div class="input-tabs">
-                                    <button class="tab-btn active" data-type="url">URL</button>
-                                    <button class="tab-btn" data-type="pdf">PDF</button>
-                                    <button class="tab-btn" data-type="text">Text</button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="sourceInput" placeholder="Paste URL or text..." class="input-field">
-                            </div>
-                            <div class="form-actions">
-                                <button class="btn btn-primary" id="analyzeSourceBtn">Analyze</button>
-                                <button class="btn btn-secondary" id="cancelSourceBtn">Cancel</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Source Cards -->
-                        <div class="source-cards" id="sourceCards">
-                            <div class="card source-card">
-                                <div class="source-header">
-                                    <h4>UNESCO Media Literacy Framework</h4>
-                                    <span class="trust-score" data-score="92">92% Trust</span>
-                                </div>
-                                <p class="source-meta">📄 Article | Published: 2024 | Author: UNESCO</p>
-                                <div class="credibility-indicators">
-                                    <div class="indicator green">✓ Author Verified</div>
-                                    <div class="indicator green">✓ Recent Source</div>
-                                    <div class="indicator yellow">⚠ Some Claims Unverified</div>
-                                </div>
-                                <div class="source-actions">
-                                    <button class="btn-small">View Details</button>
-                                    <button class="btn-small">Fact-Check</button>
-                                    <button class="btn-small">Cite</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card source-card">
-                                <div class="source-header">
-                                    <h4>Digital Citizenship in 2024</h4>
-                                    <span class="trust-score" data-score="78">78% Trust</span>
-                                </div>
-                                <p class="source-meta">📄 Blog Post | Published: 2024 | Author: Tech Academy</p>
-                                <div class="credibility-indicators">
-                                    <div class="indicator green">✓ Well-Cited</div>
-                                    <div class="indicator yellow">⚠ Author Bias Detected</div>
-                                    <div class="indicator yellow">⚠ Promotional Language</div>
-                                </div>
-                                <div class="source-actions">
-                                    <button class="btn-small">View Details</button>
-                                    <button class="btn-small">Fact-Check</button>
-                                    <button class="btn-small">Cite</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Notes Module -->
-                <section id="notes-module" class="module">
-                    <div class="module-header">
-                        <h2>Notes Workspace</h2>
-                        <button class="btn btn-primary" id="newNoteBtn">+ New Note</button>
-                    </div>
-                    
-                    <div class="notes-container">
-                        <div class="notes-list">
-                            <div class="note-item active">
-                                <h4>Critical Thinking: Bias Detection</h4>
-                                <p class="note-preview">Key points on identifying author bias, emotional framing, and selection bias...</p>
-                                <span class="note-date">Today</span>
-                            </div>
-                            <div class="note-item">
-                                <h4>Research Methods</h4>
-                                <p class="note-preview">Documentation of triangulation techniques and source comparison...</p>
-                                <span class="note-date">Yesterday</span>
-                            </div>
-                        </div>
-                        
-                        <div class="note-editor">
-                            <div class="editor-toolbar">
-                                <button class="tool-btn">B</button>
-                                <button class="tool-btn">I</button>
-                                <button class="tool-btn">U</button>
-                                <span class="divider"></span>
-                                <button class="tool-btn">📎 Attach</button>
-                                <button class="tool-btn">🔗 Link Source</button>
-                                <button class="tool-btn">✨ AI Tools</button>
-                            </div>
-                            <textarea class="note-textarea" placeholder="Start writing your note..."></textarea>
-                            <div class="ethics-reminder">
-                                ⚠️ <strong>Remember:</strong> Cite your sources properly to avoid plagiarism. This aligns with ethical digital citizenship.
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Journal Module -->
-                <section id="journal-module" class="module">
-                    <div class="module-header">
-                        <h2>Journal — Reflect on Your Learning</h2>
-                    </div>
-                    
-                    <div class="journal-container">
-                        <div class="journal-date">
-                            <h3 id="journalDate">Today, June 29, 2026</h3>
-                        </div>
-                        
-                        <div class="reflection-prompts">
-                            <h4>AI Reflection Mode — Answer to develop critical thinking:</h4>
-                            <div class="prompt-list">
-                                <div class="prompt-item">
-                                    <p>🤔 What changed your opinion today?</p>
-                                    <textarea placeholder="Reflect here..."></textarea>
-                                </div>
-                                <div class="prompt-item">
-                                    <p>📚 Which source made you trust this claim?</p>
-                                    <textarea placeholder="Reflect here..."></textarea>
-                                </div>
-                                <div class="prompt-item">
-                                    <p>👀 Did you notice any bias in what you read?</p>
-                                    <textarea placeholder="Reflect here..."></textarea>
-                                </div>
-                                <div class="prompt-item">
-                                    <p>💯 How confident are you, and why?</p>
-                                    <textarea placeholder="Reflect here..."></textarea>
-                                </div>
-                                <div class="prompt-item">
-                                    <p>🔍 Did you verify this before sharing it?</p>
-                                    <textarea placeholder="Reflect here..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-primary">Save Reflection Entry</button>
-                    </div>
-                </section>
-                
-                <!-- Flashcards Module -->
-                <section id="flashcards-module" class="module">
-                    <div class="module-header">
-                        <h2>Flashcards — Spaced Repetition Learning</h2>
-                        <button class="btn btn-primary">+ New Deck</button>
-                    </div>
-                    
-                    <div class="flashcards-grid">
-                        <div class="card deck-card">
-                            <h4>MIL Concept Deck</h4>
-                            <p class="deck-count">24 cards</p>
-                            <div class="deck-stats">
-                                <span>Due: 8</span> | <span>Learning: 5</span> | <span>Mastered: 11</span>
-                            </div>
-                            <button class="btn btn-primary btn-small">Study Now</button>
-                        </div>
-                        
-                        <div class="card deck-card">
-                            <h4>Bias & Framing</h4>
-                            <p class="deck-count">16 cards</p>
-                            <div class="deck-stats">
-                                <span>Due: 3</span> | <span>Learning: 7</span> | <span>Mastered: 6</span>
-                            </div>
-                            <button class="btn btn-primary btn-small">Study Now</button>
-                        </div>
-                        
-                        <div class="card deck-card">
-                            <h4>Digital Ethics</h4>
-                            <p class="deck-count">19 cards</p>
-                            <div class="deck-stats">
-                                <span>Due: 5</span> | <span>Learning: 8</span> | <span>Mastered: 6</span>
-                            </div>
-                            <button class="btn btn-primary btn-small">Study Now</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Study Session (Hidden by default) -->
-                    <div class="study-session" id="studySession" style="display: none;">
-                        <div class="card flashcard-large">
-                            <div class="card-front">
-                                <p class="card-question">What is media literacy?</p>
-                            </div>
-                        </div>
-                        <div class="study-controls">
-                            <button class="btn btn-secondary">🔙 Again</button>
-                            <button class="btn btn-secondary">😰 Hard</button>
-                            <button class="btn btn-primary">✓ Good</button>
-                            <button class="btn btn-success">🎉 Easy</button>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Focus Mode Module -->
-                <section id="focus-module" class="module">
-                    <div class="module-header">
-                        <h2>Focus Mode</h2>
-                    </div>
-                    
-                    <div class="focus-container">
-                        <div class="timer-methods">
-                            <button class="method-btn active" data-method="pomodoro">🍅 Pomodoro</button>
-                            <button class="method-btn" data-method="flowtime">🌊 Flowtime</button>
-                            <button class="method-btn" data-method="deep">🏔️ Deep Work</button>
-                            <button class="method-btn" data-method="custom">⏱️ Custom</button>
-                        </div>
-                        
-                        <div class="timer-display">
-                            <div class="timer" id="focusTimer">25:00</div>
-                            <div class="session-status">Ready to start</div>
-                        </div>
-                        
-                        <div class="timer-controls">
-                            <button class="btn btn-primary" id="startFocusBtn">Start Session</button>
-                            <button class="btn btn-secondary" id="pauseFocusBtn" disabled>Pause</button>
-                            <button class="btn btn-secondary" id="resetFocusBtn">Reset</button>
-                        </div>
-                        
-                        <div class="ambient-options">
-                            <h4>Ambient Sound</h4>
-                            <div class="sound-buttons">
-                                <button class="sound-btn">🌳 Forest</button>
-                                <button class="sound-btn">☕ Café</button>
-                                <button class="sound-btn">🎵 Lo-fi</button>
-                                <button class="sound-btn">🌧️ Rain</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Planner Module -->
-                <section id="planner-module" class="module">
-                    <div class="module-header">
-                        <h2>Planner</h2>
-                        <button class="btn btn-primary">+ New Task</button>
-                    </div>
-                    
-                    <div class="planner-grid">
-                        <div class="planner-sidebar">
-                            <h4>Upcoming</h4>
-                            <ul class="task-list">
-                                <li class="task-item">
-                                    <input type="checkbox"> Complete Source Analysis (Due: Today)
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox"> Review Flashcard Deck (Due: Tomorrow)
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox"> Journal Reflection (Due: 3 days)
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="calendar-view">
-                            <div class="calendar-header">
-                                <button>←</button>
-                                <h3>June 2026</h3>
-                                <button>→</button>
-                            </div>
-                            <div class="calendar-grid" id="calendarGrid">
-                                <!-- Generated by JS -->
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- AI Assistant Module -->
-                <section id="ai-module" class="module">
-                    <div class="module-header">
-                        <h2>AI Assistant — Ethical AI Support</h2>
-                    </div>
-                    
-                    <div class="ai-container">
-                        <div class="ai-modes">
-                            <div class="mode-card">
-                                <h4>🎓 Tutor</h4>
-                                <p>Get personalized explanations</p>
-                                <button class="btn btn-primary btn-small">Open</button>
-                            </div>
-                            <div class="mode-card">
-                                <h4>🔍 Researcher</h4>
-                                <p>Find and organize sources</p>
-                                <button class="btn btn-primary btn-small">Open</button>
-                            </div>
-                            <div class="mode-card">
-                                <h4>✓ Fact Checker</h4>
-                                <p>Verify claims and sources</p>
-                                <button class="btn btn-primary btn-small">Open</button>
-                            </div>
-                            <div class="mode-card">
-                                <h4>✍️ Writing Coach</h4>
-                                <p>Improve your writing quality</p>
-                                <button class="btn btn-primary btn-small">Open</button>
-                            </div>
-                        </div>
-                        
-                        <div class="ai-transparency">
-                            <h4>⚠️ AI Transparency Disclosure</h4>
-                            <p>This AI Assistant is designed to support your learning while maintaining ethical standards. All suggestions are educational aids—always verify information independently and cite your sources. By using this tool, you're developing skills aligned with the UNESCO Media and Information Literacy framework.</p>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Analytics Module -->
-                <section id="analytics-module" class="module">
-                    <div class="module-header">
-                        <h2>Analytics — Track Your MIL Growth</h2>
-                    </div>
-                    
-                    <div class="analytics-grid">
-                        <div class="card">
-                            <h3>Study Time (This Week)</h3>
-                            <div class="chart-placeholder">📊 12h 45m total</div>
-                        </div>
-                        <div class="card">
-                            <h3>Source Diversity</h3>
-                            <div class="chart-placeholder">📚 34 sources from 8 categories</div>
-                        </div>
-                        <div class="card">
-                            <h3>Review Accuracy</h3>
-                            <div class="chart-placeholder">✓ 87% correct answers</div>
-                        </div>
-                        <div class="card">
-                            <h3>Critical Thinking Score</h3>
-                            <div class="chart-placeholder">🧠 Improved by 12% this month</div>
-                        </div>
-                        <div class="card">
-                            <h3>MIL Growth Over Time</h3>
-                            <div class="chart-placeholder">📈 Tracking your 5 MIL pillars</div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Community Module -->
-                <section id="community-module" class="module">
-                    <div class="module-header">
-                        <h2>Community — Peer Learning & Verification</h2>
-                    </div>
-                    
-                    <div class="community-grid">
-                        <div class="card">
-                            <h3>📤 Share Verified Source</h3>
-                            <p>Contribute credible sources to the community library</p>
-                            <button class="btn btn-primary btn-small">Share</button>
-                        </div>
-                        <div class="card">
-                            <h3>🔗 Peer Fact-Check Request</h3>
-                            <p>Ask community members to verify your claims</p>
-                            <button class="btn btn-primary btn-small">Request</button>
-                        </div>
-                        <div class="card">
-                            <h3>💬 Discussion Threads</h3>
-                            <p>Join conversations on media literacy topics</p>
-                            <button class="btn btn-primary btn-small">Explore</button>
-                        </div>
-                        <div class="card">
-                            <h3>🚨 Report Misinformation</h3>
-                            <p>Flag suspicious content for community review</p>
-                            <button class="btn btn-primary btn-small">Report</button>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Library Module -->
-                <section id="library-module" class="module">
-                    <div class="module-header">
-                        <h2>Library</h2>
-                    </div>
-                    
-                    <div class="library-tabs">
-                        <button class="lib-tab active" data-type="all">All</button>
-                        <button class="lib-tab" data-type="books">Books</button>
-                        <button class="lib-tab" data-type="pdfs">PDFs</button>
-                        <button class="lib-tab" data-type="courses">Courses</button>
-                    </div>
-                    
-                    <div class="library-grid" id="libraryGrid">
-                        <div class="library-item">
-                            <div class="item-cover">📕</div>
-                            <h4>The Art of Critical Thinking</h4>
-                            <p class="item-meta">Book | Progress: 65%</p>
-                        </div>
-                        <div class="library-item">
-                            <div class="item-cover">📄</div>
-                            <h4>Digital Citizenship Guide 2024</h4>
-                            <p class="item-meta">PDF | Added: 2 weeks ago</p>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Settings Module -->
-                <section id="settings-module" class="module">
-                    <div class="module-header">
-                        <h2>Settings</h2>
-                    </div>
-                    
-                    <div class="settings-grid">
-                        <div class="settings-group">
-                            <h3>Appearance</h3>
-                            <div class="setting-item">
-                                <label>Theme</label>
-                                <select>
-                                    <option>Light (Minimal)</option>
-                                    <option>Dark</option>
-                                    <option>System</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="settings-group">
-                            <h3>Privacy & Data Ethics</h3>
-                            <div class="setting-item">
-                                <label>
-                                    <input type="checkbox" checked> Data Minimization
-                                </label>
-                                <p class="setting-desc">Only collect data necessary for your learning</p>
-                            </div>
-                            <div class="setting-item">
-                                <label>
-                                    <input type="checkbox" checked> Right to Delete
-                                </label>
-                                <p class="setting-desc">Export or permanently delete your data</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Help Module -->
-                <section id="help-module" class="module">
-                    <div class="module-header">
-                        <h2>Help & Onboarding</h2>
-                    </div>
-                    
-                    <div class="help-grid">
-                        <div class="card">
-                            <h3>🎯 First-Time Tour</h3>
-                            <p>Learn the basics of Dailynox</p>
-                            <button class="btn btn-primary btn-small">Start Tour</button>
-                        </div>
-                        <div class="card">
-                            <h3>📚 UNESCO MIL Framework</h3>
-                            <p>Understand the 5 pillars of Media Literacy</p>
-                            <button class="btn btn-primary btn-small">Learn More</button>
-                        </div>
-                        <div class="card">
-                            <h3>⌨️ Keyboard Shortcuts</h3>
-                            <p>Master productivity with hotkeys</p>
-                            <button class="btn btn-primary btn-small">View List</button>
-                        </div>
-                    </div>
-                </section>
+          </div>
+          <div class="ob-pref-row">
+            <span class="ob-pref-label" id="pref-focus-lbl">Thời gian Pomodoro</span>
+            <div class="ob-seg" id="pomoSeg">
+              <div class="ob-seg-opt" data-pomo="20">20p</div>
+              <div class="ob-seg-opt active" data-pomo="25">25p</div>
+              <div class="ob-seg-opt" data-pomo="30">30p</div>
+              <div class="ob-seg-opt" data-pomo="45">45p</div>
             </div>
-        </main>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Google / Skip -->
+      <div class="ob-step" id="ob-step-4">
+        <div class="ob-q" id="ob-q4">Đồng bộ tài khoản</div>
+        <div class="ob-hint" id="ob-hint4" style="margin-bottom:20px">Tuỳ chọn — bạn có thể bỏ qua và dùng offline</div>
+        <button class="ob-google-btn" onclick="mockGoogleLogin()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span id="ob-google-txt">Đăng nhập với Google</span>
+        </button>
+        <div class="ob-google-name" id="ob-google-name" style="display:none"></div>
+        <button class="ob-skip" onclick="skipGoogle()" id="ob-skip-btn">Dùng offline, không đăng nhập</button>
+      </div>
     </div>
-    
-    <script src="app.js"></script>
+
+    <!-- Progress dots -->
+    <div class="ob-dots">
+      <div class="ob-dot active" data-s="1"></div>
+      <div class="ob-dot" data-s="2"></div>
+      <div class="ob-dot" data-s="3"></div>
+      <div class="ob-dot" data-s="4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="ob-nav">
+      <button class="ob-back" id="ob-btn-back" onclick="obPrev()" style="visibility:hidden">Quay lại</button>
+      <button class="ob-next" id="ob-next" onclick="obNext()">Tiếp tục</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FLOW STATE OVERLAY ═══ -->
+<div class="flow-ov" id="flowOv">
+  <div class="fw-ring">
+    <svg width="220" height="220" viewBox="0 0 220 220">
+      <circle cx="110" cy="110" r="98" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="7"/>
+      <circle cx="110" cy="110" r="98" fill="none" stroke="var(--am-mid)" stroke-width="7"
+        stroke-linecap="round" stroke-dasharray="615.75" id="fwRing" stroke-dashoffset="615.75"/>
+    </svg>
+    <div class="fw-rt">
+      <div class="t" id="fwTime">25:00</div>
+      <div class="s" id="fw-phase-lbl">trạng thái flow</div>
+    </div>
+  </div>
+  <div class="fw-task" id="fwTask">—</div>
+  <div class="fw-stats">
+    <div class="fw-stat"><div class="n" id="fwPomos">0</div><div class="l" id="fw-s1">phiên</div></div>
+    <div class="fw-stat"><div class="n" id="fwMins">0</div><div class="l" id="fw-s2">phút</div></div>
+    <div class="fw-stat"><div class="n" id="fwStreak">12</div><div class="l" id="fw-s3">streak</div></div>
+  </div>
+  <div class="fw-meter"><div class="fw-mf" id="fwMf" style="width:0%"></div></div>
+  <div class="fw-why" id="fw-why">Hệ thống phát hiện bạn đang trong trạng thái Flow. Mọi thông báo đã bị khoá. Tiếp tục tập trung.</div>
+  <button class="fw-exit" onclick="exitFlow()" id="fw-exit-btn">Thoát Flow Mode</button>
+  <div class="fw-whisper">dailynox — flow state detected</div>
+</div>
+
+<!-- ═══ SETTINGS PANEL ═══ -->
+<div class="settings-overlay" id="settingsOv" onclick="if(event.target===this)closeSettings()">
+  <div class="settings-panel">
+    <div class="sp-header">
+      <div class="sp-title" id="sp-title">Cài đặt</div>
+      <button class="sp-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="sp-body">
+      <div class="sp-section">
+        <div class="sp-sec-label" id="sp-s1">Tài khoản</div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-name-lbl">Tên hiển thị</div>
+            <input id="sp-name-input" class="sp-input" type="text" placeholder="Tên của bạn">
+          </div>
+          <button class="sp-action" onclick="saveName()" id="sp-save-name">Lưu</button>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-gg-lbl">Google Account</div>
+            <div class="sp-row-sub" id="sp-gg-sub">Chưa đăng nhập</div>
+          </div>
+          <button class="sp-action" onclick="mockGoogleLogin(true)" id="sp-gg-btn">Đăng nhập</button>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-sec-label" id="sp-s2">Giao diện</div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-theme-lbl">Chủ đề</div>
+          </div>
+          <div class="ob-seg">
+            <div class="ob-seg-opt" data-stheme="light" id="stheme-light">Sáng</div>
+            <div class="ob-seg-opt" data-stheme="dark" id="stheme-dark">Tối</div>
+          </div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-lang-lbl">Ngôn ngữ</div>
+          </div>
+          <div class="ob-seg">
+            <div class="ob-seg-opt" data-slang="vi" id="slang-vi">Tiếng Việt</div>
+            <div class="ob-seg-opt" data-slang="en" id="slang-en">English</div>
+          </div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-font-lbl">Cỡ chữ</div>
+          </div>
+          <div class="ob-seg">
+            <div class="ob-seg-opt" data-fsize="sm" id="fsize-sm">Nhỏ</div>
+            <div class="ob-seg-opt active" data-fsize="md" id="fsize-md">Vừa</div>
+            <div class="ob-seg-opt" data-fsize="lg" id="fsize-lg">Lớn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-sec-label" id="sp-s3">Tập trung</div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-pomo-lbl">Thời gian Pomodoro</div>
+          </div>
+          <div class="ob-seg">
+            <div class="ob-seg-opt" data-spomo="20" id="spomo-20">20p</div>
+            <div class="ob-seg-opt active" data-spomo="25" id="spomo-25">25p</div>
+            <div class="ob-seg-opt" data-spomo="30" id="spomo-30">30p</div>
+            <div class="ob-seg-opt" data-spomo="45" id="spomo-45">45p</div>
+          </div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-break-lbl">Thời gian nghỉ ngắn</div>
+          </div>
+          <div class="ob-seg">
+            <div class="ob-seg-opt" data-sbreak="3" id="sbreak-3">3p</div>
+            <div class="ob-seg-opt active" data-sbreak="5" id="sbreak-5">5p</div>
+            <div class="ob-seg-opt" data-sbreak="10" id="sbreak-10">10p</div>
+          </div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-notif-lbl">Thông báo cuối ngày</div>
+            <div class="sp-row-sub" id="sp-notif-sub">Nhắc viết nhật ký 21:00</div>
+          </div>
+          <label class="sp-toggle">
+            <input type="checkbox" id="sp-notif-chk" checked onchange="saveSettings()">
+            <span class="sp-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="sp-section">
+        <div class="sp-sec-label" id="sp-s4">Dữ liệu</div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-export-lbl">Xuất dữ liệu</div>
+            <div class="sp-row-sub">JSON, CSV, Markdown</div>
+          </div>
+          <button class="sp-action" onclick="exportData()" id="sp-export-btn">Xuất</button>
+        </div>
+        <div class="sp-row">
+          <div class="sp-row-left">
+            <div class="sp-row-title" id="sp-reset-lbl" style="color:var(--rs)">Đặt lại toàn bộ</div>
+          </div>
+          <button class="sp-action" style="color:var(--rs);border-color:var(--rs-bg)" onclick="resetApp()" id="sp-reset-btn">Đặt lại</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ QUICK ADD MODAL ═══ -->
+<div class="modal-overlay" id="quickAddOv" onclick="if(event.target===this)closeQuickAdd()">
+  <div class="quick-add-modal">
+    <div class="qa-title" id="qa-title">Thêm nhanh</div>
+    <input id="qa-input" class="qa-input" type="text" placeholder="Tên nhiệm vụ…" autocomplete="off" onkeydown="if(event.key==='Enter')saveQuickAdd()">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px" id="qaLabels"></div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <select id="qa-pri" class="sp-input" style="flex:1"><option value="high" id="qa-p1">Ưu tiên</option><option value="med" selected id="qa-p2">Trung bình</option><option value="low" id="qa-p3">Thấp</option></select>
+      <input id="qa-due" class="sp-input" type="text" style="flex:1" placeholder="Giờ (VD: 14:00)">
+    </div>
+    <div class="fa" style="margin-top:14px">
+      <button class="btn btn-gh btn-sm" onclick="closeQuickAdd()" id="qa-cancel">Hủy</button>
+      <button class="btn btn-dk btn-sm" onclick="saveQuickAdd()" id="qa-save">Thêm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ APP SHELL ═══ -->
+<div id="app" class="app" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="wordmark">dailynox<em>.</em></div>
+    </div>
+    <div class="ng-label" id="nl-main">chính</div>
+    <nav id="nav-main">
+      <div class="ni active" data-view="dashboard" id="nav-dashboard">Tổng quan</div>
+      <div class="ni" data-view="week" id="nav-week">Tuần này</div>
+      <div class="ni" data-view="focus" id="nav-focus">Tập trung</div>
+      <div class="ni" data-view="tasks" id="nav-tasks">Nhiệm vụ <span class="nbadge" id="taskBadge">0</span></div>
+    </nav>
+    <div class="ng-label" id="nl-dev">phát triển</div>
+    <nav>
+      <div class="ni" data-view="journal" id="nav-journal">Nhật ký</div>
+      <div class="ni" data-view="study" id="nav-study">Ghi chép học tập</div>
+      <div class="ni" data-view="library" id="nav-library">Thư viện</div>
+      <div class="ni" data-view="flashcards" id="nav-flashcards">Flashcard</div>
+      <div class="ni" data-view="goals" id="nav-goals">Mục tiêu</div>
+      <div class="ni" data-view="selfdev" id="nav-selfdev">Hoàn thiện bản thân</div>
+    </nav>
+    <div class="ng-label" id="nl-insights">phân tích</div>
+    <nav>
+      <div class="ni" data-view="analytics" id="nav-analytics">Phân tích</div>
+    </nav>
+    <div class="sb-foot">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="av-ring" id="av-ring">—</div>
+        <div>
+          <div class="u-name" id="u-name">—</div>
+          <div class="u-meta" id="u-streak">Chuỗi 0 ngày</div>
+        </div>
+        <button class="settings-btn" onclick="openSettings()" title="Cài đặt">⚙</button>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- ── DASHBOARD ── -->
+    <section class="view active" id="dashboard">
+      <div class="vh">
+        <div>
+          <div class="vtitle" id="greet-msg">Chào buổi sáng</div>
+          <div class="vsub" id="dash-sub">Hôm nay bạn có 0 nhiệm vụ</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-gh btn-sm" onclick="openQuickAdd()" id="btn-qa">Thêm nhanh</button>
+          <button class="btn btn-dk" onclick="goTo('focus')" id="btn-start-focus">Bắt đầu tập trung</button>
+        </div>
+      </div>
+
+      <div class="fw-banner fw-pulse" id="flowBanner" style="display:none">
+        <div class="fw-dot"></div>
+        <div class="txt" id="flow-banner-txt"><strong id="flow-b-title">Flow State phát hiện</strong> — <span id="flow-b-sub">Bạn đang tập trung sâu. Khoá màn hình?</span></div>
+        <button class="fw-lockbtn" onclick="enterFlow()" id="fw-lock-btn">Khoá ngay</button>
+      </div>
+
+      <div class="notif" id="dash-notif" style="display:none">
+        <div class="ndot"></div>
+        <span id="dash-notif-txt"></span>
+      </div>
+
+      <div class="g4 mb12" id="dash-stats">
+        <div class="card sp16">
+          <div class="slabel" id="ds-l1">Tập trung hôm nay</div>
+          <div class="snum am" id="ds-focus">0<span style="font-size:14px">h</span></div>
+          <div class="mbars" id="focus-bars"></div>
+        </div>
+        <div class="card sp16">
+          <div class="slabel" id="ds-l2">Chuỗi thói quen</div>
+          <div class="snum sg" id="ds-streak">0<span style="font-size:14px"> ngày</span></div>
+          <div class="ssub" id="ds-streak-sub"></div>
+          <div class="srow" id="ds-streak-dots"></div>
+        </div>
+        <div class="card sp16">
+          <div class="slabel" id="ds-l3">Mục tiêu chính</div>
+          <div class="snum" id="ds-goal-pct">0<span style="font-size:14px">%</span></div>
+          <div class="ssub mb4" id="ds-goal-name"></div>
+          <div class="pt"><div class="pf" id="ds-goal-bar" style="width:0%"></div></div>
+        </div>
+        <div class="card sp16">
+          <div class="slabel" id="ds-l4">Flashcard hôm nay</div>
+          <div class="snum bl" id="ds-fc">0<span style="font-size:14px"> thẻ</span></div>
+          <div class="ssub" id="ds-fc-sub"></div>
+          <div class="pt"><div class="pf" id="ds-fc-bar" style="width:0%;background:var(--bl)"></div></div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <div class="ctitle" id="ds-today-title">Hôm nay</div>
+          <div id="ds-task-list"><div class="empty-state" id="ds-empty">Chưa có nhiệm vụ nào. Thêm ngay!</div></div>
+        </div>
+        <div class="card">
+          <div class="ctitle" id="ds-journal-title">Nhật ký hôm qua</div>
+          <div id="ds-journal-preview">
+            <div class="empty-state" id="ds-j-empty">Chưa có nhật ký. <span style="cursor:pointer;color:var(--am)" onclick="goTo('journal')">Viết ngay</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WEEK ── -->
+    <section class="view" id="week">
+      <div class="vh">
+        <div><div class="vtitle" id="week-title">Tuần này</div><div class="vsub" id="week-sub">Kéo thả nhiệm vụ giữa các ngày</div></div>
+        <button class="btn btn-gh btn-sm" onclick="document.getElementById('wkIn').focus()" id="wk-add-btn">Việc mới</button>
+      </div>
+      <div class="week-range" id="week-range"></div>
+      <div class="wb" id="wb"></div>
+    </section>
+
+    <!-- ── FOCUS ── -->
+    <section class="view" id="focus">
+      <div class="vh">
+        <div><div class="vtitle" id="focus-title">Phiên tập trung</div><div class="vsub" id="focus-sub">Pomodoro — tập trung sâu, nghỉ đúng lúc</div></div>
+        <select id="pomoDur" class="sortsel" onchange="changePomo()">
+          <option value="20">20 phút</option>
+          <option value="25" selected>25 phút</option>
+          <option value="30">30 phút</option>
+          <option value="45">45 phút</option>
+          <option value="50">50 phút</option>
+        </select>
+      </div>
+      <div class="fctr">
+        <div class="rw">
+          <svg width="240" height="240" viewBox="0 0 240 240">
+            <circle cx="120" cy="120" r="104" fill="none" stroke="var(--line)" stroke-width="8"/>
+            <circle id="ringP" cx="120" cy="120" r="104" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round" stroke-dasharray="653.45" stroke-dashoffset="653.45"/>
+          </svg>
+          <div class="rt">
+            <div class="t" id="timerLbl">25:00</div>
+            <div class="s" id="phaseLbl">tập trung</div>
+          </div>
+        </div>
+        <div class="fctrls">
+          <div class="cbtn" onclick="resetTimer()" id="focus-reset-btn" title="Reset">↺</div>
+          <div class="cbtn pr" id="playBtn" onclick="toggleTimer()">▶</div>
+          <div class="cbtn" onclick="skipPhase()" id="focus-skip-btn" title="Bỏ qua">▶▶</div>
+        </div>
+        <div class="pdots" id="pdots"></div>
+        <div class="vsub" id="sessionInfo" style="margin-top:6px"></div>
+        <div class="ftbox">
+          <div class="ftlbl" id="focus-task-lbl">Đang tập trung vào</div>
+          <div id="ftask-list"><div class="empty-state" style="font-size:12px">Chưa có nhiệm vụ. <span style="color:var(--am);cursor:pointer" onclick="goTo('tasks')">Thêm nhiệm vụ</span></div></div>
+        </div>
+        <div class="ambs" id="amb-btns">
+          <div class="amc on" data-amb="silence" id="amb-silence">im lặng</div>
+          <div class="amc" data-amb="rain" id="amb-rain">mưa nhẹ</div>
+          <div class="amc" data-amb="lofi" id="amb-lofi">lo-fi</div>
+          <div class="amc" data-amb="cafe" id="amb-cafe">quán café</div>
+          <div class="amc" data-amb="ocean" id="amb-ocean">sóng biển</div>
+          <div class="amc" data-amb="forest" id="amb-forest">rừng xanh</div>
+        </div>
+        <div class="focus-stats-row">
+          <div class="focus-stat">
+            <div class="focus-stat-n" id="fs-today">0</div>
+            <div class="focus-stat-l" id="fs-today-lbl">phiên hôm nay</div>
+          </div>
+          <div class="focus-stat">
+            <div class="focus-stat-n" id="fs-total">0h</div>
+            <div class="focus-stat-l" id="fs-total-lbl">tổng tuần này</div>
+          </div>
+          <div class="focus-stat">
+            <div class="focus-stat-n" id="fs-streak">0</div>
+            <div class="focus-stat-l" id="fs-streak-lbl">ngày streak</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TASKS ── -->
+    <section class="view" id="tasks">
+      <div class="vh">
+        <div><div class="vtitle" id="tasks-title">Nhiệm vụ</div><div class="vsub" id="task-sub"></div></div>
+        <button class="btn btn-dk" onclick="togTF()" id="add-task-btn">Thêm nhiệm vụ</button>
+      </div>
+      <div class="g3 mb12">
+        <div class="card sp16"><div class="slabel" id="st-l1">Hoàn thành hôm nay</div><div class="snum sg" id="stToday">0/0</div><div class="pt"><div class="pf" id="stBar" style="width:0%;background:var(--sg)"></div></div></div>
+        <div class="card sp16"><div class="slabel" id="st-l2">Tỉ lệ hoàn thành tuần</div><div class="snum am" id="stWeek">0%</div><div class="ssub" id="stWeekSub"></div></div>
+        <div class="card sp16"><div class="slabel" id="st-l3">Theo nhãn</div><div id="stLabels" style="margin-top:6px"></div></div>
+      </div>
+      <div class="ttb">
+        <div class="sw"><span style="color:var(--ink4);font-size:12px" id="search-icon-txt">tìm</span><input id="tSearch" type="text" placeholder="Tìm nhiệm vụ…" oninput="renderTasks()"></div>
+        <div id="lblFilters" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+        <select id="sortSel" class="sortsel" onchange="renderTasks()">
+          <option value="default" id="sort-def">Mặc định</option>
+          <option value="priority" id="sort-pri">Ưu tiên cao</option>
+          <option value="due" id="sort-due">Hạn gần nhất</option>
+          <option value="az" id="sort-az">Tên A–Z</option>
+        </select>
+        <button class="btn btn-gh btn-sm" onclick="togLM()" id="manage-lbl-btn">Nhãn</button>
+      </div>
+      <div class="card mb12" id="lblMgr" style="display:none">
+        <div class="ctitle mb8" id="lm-title">Nhãn của bạn</div>
+        <div id="lblMgrList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <input id="newLblName" class="sp-input" type="text" placeholder="Tên nhãn mới…" style="flex:1;min-width:160px">
+          <div class="swrow" id="swRow"></div>
+          <button class="btn btn-dk btn-sm" onclick="addLabel()" id="add-lbl-btn">Thêm</button>
+        </div>
+      </div>
+      <div class="card mb12" id="tForm" style="display:none">
+        <div class="ctitle mb12" id="task-form-title">Nhiệm vụ mới</div>
+        <div class="ff"><label class="fl" id="tf-l1">Tên nhiệm vụ</label><input id="nTitle" class="sp-input" type="text" placeholder="Nhập tên nhiệm vụ…" style="width:100%"></div>
+        <div class="ff"><label class="fl" id="tf-l2">Ghi chú</label><textarea id="nNote" class="sp-input" style="width:100%;min-height:72px;resize:vertical" placeholder="Mô tả chi tiết…"></textarea></div>
+        <div class="ff"><label class="fl" id="tf-l3">Nhãn</label><div id="frmLbls" style="display:flex;gap:6px;flex-wrap:wrap"></div></div>
+        <div class="fr2">
+          <div class="ff"><label class="fl" id="tf-l4">Ưu tiên</label><select id="nPri" class="sp-input"><option value="high" id="p-high">Ưu tiên cao</option><option value="med" selected id="p-med">Trung bình</option><option value="low" id="p-low">Thấp</option></select></div>
+          <div class="ff"><label class="fl" id="tf-l5">Giờ / Hạn</label><input id="nDue" class="sp-input" type="text" placeholder="VD: 14:00"></div>
+          <div class="ff"><label class="fl" id="tf-l6">Lặp lại</label><select id="nRep" class="sp-input"><option value="none" id="r-none">Không lặp</option><option value="daily" id="r-daily">Hàng ngày</option><option value="weekly" id="r-weekly">Hàng tuần</option></select></div>
+          <div class="ff"><label class="fl" id="tf-l7">Hạn ngày</label><input id="nDate" class="sp-input" type="date"></div>
+        </div>
+        <div class="ff">
+          <label class="fl" id="tf-l8">Việc con</label>
+          <div class="sub-add"><input id="nSubIn" class="sp-input" style="flex:1" type="text" placeholder="Nhập rồi Enter…" onkeydown="if(event.key==='Enter')addDS()"><button class="btn btn-gh btn-sm" onclick="addDS()" id="add-sub-btn">+</button></div>
+          <div id="dSubs" style="margin-top:6px"></div>
+        </div>
+        <div class="fa"><button class="btn btn-gh btn-sm" onclick="togTF()" id="cancel-task-btn">Hủy</button><button class="btn btn-dk btn-sm" onclick="saveTask()" id="save-task-btn">Lưu nhiệm vụ</button></div>
+      </div>
+      <div class="card"><div id="taskList"></div><div id="tEmpty" class="empty-state" style="display:none">Không có nhiệm vụ phù hợp.</div></div>
+    </section>
+
+    <!-- ── JOURNAL ── -->
+    <section class="view" id="journal">
+      <div class="vh">
+        <div><div class="vtitle" id="journal-title">Nhật ký</div><div class="vsub" id="journal-sub">Plus / Minus / Next — ghi lại hành trình mỗi ngày</div></div>
+        <button class="btn btn-dk" onclick="saveJnl()" id="save-jnl-btn">Lưu hôm nay</button>
+      </div>
+      <div class="card mb12" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+        <div>
+          <div class="ctitle mb8" id="mood-label">Cảm xúc hôm nay</div>
+          <div style="display:flex;gap:6px" id="moodRow">
+            <button class="mbtn" data-m="1">Tệ</button>
+            <button class="mbtn" data-m="2">Ổn</button>
+            <button class="mbtn sel" data-m="3">Tốt</button>
+            <button class="mbtn" data-m="4">Vui</button>
+            <button class="mbtn" data-m="5">Tuyệt</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="slabel" id="energy-label">Năng lượng</span>
+          <input type="range" min="1" max="10" value="7" id="energySlider" class="slider" oninput="document.getElementById('enVal').textContent=this.value">
+          <span id="enVal" style="font-size:14px;font-weight:500;color:var(--am);min-width:16px">7</span>
+        </div>
+      </div>
+      <div class="jt" id="journal-tabs">
+        <div class="jtb active" data-js="pmn" id="jtb-pmn">Plus / Minus / Next</div>
+        <div class="jtb" data-js="fw" id="jtb-fw">Viết tự do</div>
+        <div class="jtb" data-js="ref" id="jtb-ref">Phản tư có hướng</div>
+        <div class="jtb" data-js="hist" id="jtb-hist">Lịch sử</div>
+      </div>
+      <div class="js active" id="js-pmn">
+        <div class="pmng">
+          <div class="pmnc pl"><div class="pmnh pl" id="pmn-pl-h">Plus — điều tích cực</div><div id="plList"></div><textarea class="pmni" id="plIn" rows="2"></textarea><div class="pmna" onclick="addPmn('pl')" id="pmna-pl">+ thêm</div></div>
+          <div class="pmnc mi"><div class="pmnh mi" id="pmn-mi-h">Minus — điều chưa tốt</div><div id="miList"></div><textarea class="pmni" id="miIn" rows="2"></textarea><div class="pmna" onclick="addPmn('mi')" id="pmna-mi">+ thêm</div></div>
+          <div class="pmnc nx"><div class="pmnh nx" id="pmn-nx-h">Next — hành động tiếp theo</div><div id="nxList"></div><textarea class="pmni" id="nxIn" rows="2"></textarea><div class="pmna" onclick="addPmn('nx')" id="pmna-nx">+ thêm</div></div>
+        </div>
+      </div>
+      <div class="js" id="js-fw">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div class="ctitle" id="fw-title">Viết tự do</div>
+            <span id="wc" style="font-size:11px;color:var(--ink3)">0 từ</span>
+          </div>
+          <textarea id="fwArea" class="free-textarea" placeholder="Hôm nay bạn suy nghĩ gì?…"></textarea>
+        </div>
+      </div>
+      <div class="js" id="js-ref"><div id="refQs"></div></div>
+      <div class="js" id="js-hist"><div id="jHist"></div></div>
+    </section>
+
+    <!-- ── STUDY ── -->
+    <section class="view" id="study">
+      <div class="vh">
+        <div><div class="vtitle" id="study-title">Ghi chép học tập</div><div class="vsub" id="study-sub">Lưu lại những gì bạn học mỗi ngày</div></div>
+        <button class="btn btn-dk" onclick="togSF()" id="add-study-btn">Ghi chép mới</button>
+      </div>
+      <div class="card mb12" id="sForm" style="display:none">
+        <div class="ctitle mb12" id="study-form-title">Ghi chép mới</div>
+        <div class="ff"><label class="fl" id="sf-l1">Chủ đề / Bài học</label><input id="sTopic" class="sp-input" type="text" placeholder="VD: Thuật toán Quick Sort" style="width:100%"></div>
+        <div class="ff"><label class="fl" id="sf-l2">Nội dung</label><textarea id="sCont" class="sp-input" style="width:100%;min-height:100px;resize:vertical" placeholder="Ghi lại công thức, ví dụ, insight…"></textarea></div>
+        <div class="fr2">
+          <div class="ff"><label class="fl" id="sf-l3">Môn học</label><select id="sSubj" class="sp-input"><option>Python</option><option>Tiếng Anh</option><option>Toán</option><option>Kinh tế</option><option>Thiết kế</option><option>Khác</option></select></div>
+          <div class="ff"><label class="fl" id="sf-l4">Thời gian (phút)</label><input id="sTime" class="sp-input" type="number" placeholder="VD: 45" min="1"></div>
+          <div class="ff"><label class="fl" id="sf-l5">Mức hiểu</label><select id="sLvl" class="sp-input"><option value="3" id="sl-3">Hiểu rõ</option><option value="2" id="sl-2">Tạm hiểu</option><option value="1" id="sl-1">Cần ôn lại</option></select></div>
+          <div class="ff"><label class="fl" id="sf-l6">Tags</label><input id="sTags" class="sp-input" type="text" placeholder="#thuật-toán #sort"></div>
+        </div>
+        <div class="fa"><button class="btn btn-gh btn-sm" onclick="togSF()" id="cancel-study-btn">Hủy</button><button class="btn btn-dk btn-sm" onclick="saveSt()" id="save-study-btn">Lưu</button></div>
+      </div>
+      <div class="g3 mb12">
+        <div class="card sp16"><div class="slabel" id="st-s1">Tổng ghi chép</div><div class="snum am" id="stCnt">0</div><div class="ssub" id="st-s1-sub">ghi chép đã lưu</div></div>
+        <div class="card sp16"><div class="slabel" id="st-s2">Hôm nay</div><div class="snum sg" id="studyToday">0h</div><div class="ssub" id="st-s2-sub">thời gian học</div></div>
+        <div class="card sp16"><div class="slabel" id="st-s3">Môn nhiều nhất</div><div style="font-size:18px;margin-top:8px;font-family:'Lora',serif" id="topSubject">—</div><div class="ssub" id="st-s3-sub">tuần này</div></div>
+      </div>
+      <div class="card"><div id="stList"><div class="empty-state" id="st-empty">Chưa có ghi chép nào. Thêm ngay!</div></div></div>
+    </section>
+
+    <!-- ── LIBRARY ── -->
+    <section class="view" id="library">
+      <div class="vh">
+        <div><div class="vtitle" id="lib-title">Thư viện</div><div class="vsub" id="lib-sub">Môn học, sách và khóa học đang theo dõi</div></div>
+        <button class="btn btn-gh btn-sm" onclick="openAddLib()" id="add-lib-btn">Thêm tài nguyên</button>
+      </div>
+      <div class="trow">
+        <div class="titem active" onclick="swLib('subjects',this)" id="lib-tab-s">Môn học</div>
+        <div class="titem" onclick="swLib('books',this)" id="lib-tab-b">Sách đang đọc</div>
+        <div class="titem" onclick="swLib('courses',this)" id="lib-tab-c">Khóa học</div>
+      </div>
+      <div id="lb-subjects"><div class="lg" id="lib-subjects-grid"></div></div>
+      <div id="lb-books" style="display:none"><div class="card" id="lib-books-list"></div></div>
+      <div id="lb-courses" style="display:none"><div class="lg" id="lib-courses-grid"></div></div>
+    </section>
+
+    <!-- ── FLASHCARDS ── -->
+    <section class="view" id="flashcards">
+      <div class="vh">
+        <div><div class="vtitle" id="fc-title">Flashcard</div><div class="vsub" id="fc-sub">Spaced Repetition — ôn tập để nhớ lâu hơn</div></div>
+        <button class="btn btn-gh btn-sm" onclick="openAddFC()" id="add-fc-btn">Thêm thẻ</button>
+      </div>
+      <div class="g4 mb16">
+        <div class="card sp16"><div class="slabel" id="fc-l1">Thẻ hôm nay</div><div class="snum am" id="fc-due">0</div><div class="ssub" id="fc-l1-sub">cần ôn tập</div></div>
+        <div class="card sp16"><div class="slabel" id="fc-l2">Đã ôn</div><div class="snum sg" id="fcDn">0</div><div class="ssub" id="fc-l2-sub">hôm nay</div></div>
+        <div class="card sp16"><div class="slabel" id="fc-l3">Tỉ lệ nhớ</div><div class="snum bl" id="fc-rate">0<span style="font-size:14px">%</span></div><div class="ssub" id="fc-l3-sub">7 ngày qua</div></div>
+        <div class="card sp16"><div class="slabel" id="fc-l4">Chuỗi học</div><div class="snum am" id="fc-streak">0<span style="font-size:14px"> ngày</span></div><div class="ssub" id="fc-l4-sub">liên tiếp</div></div>
+      </div>
+      <div class="trow" id="fc-deck-tabs"></div>
+      <div class="fcw">
+        <div class="fcc" id="fcCard" onclick="flipFC()">
+          <div class="fci">
+            <div class="fcf"><div class="fclbl" id="fc-front-lbl">Từ / Khái niệm</div><div class="fcwd" id="fcFr">—</div><div class="fcpr" id="fcPron"></div></div>
+            <div class="fcf fcb"><div class="fclbl" id="fc-back-lbl">Nghĩa / Giải thích</div><div class="fcwd" id="fcBk">—</div><div class="fcpr" id="fcEx"></div></div>
+          </div>
+        </div>
+        <div id="fcHint" class="vsub" style="margin-top:10px">Nhấn vào thẻ để xem nghĩa</div>
+        <div class="fcbs" id="fcBtns" style="display:none">
+          <button class="fcb2 ag" onclick="nextFC('ag')" id="fc-again">Quên rồi</button>
+          <button class="fcb2 gd" onclick="nextFC('gd')" id="fc-good">Nhớ được</button>
+          <button class="fcb2 ez" onclick="nextFC('ez')" id="fc-easy">Dễ dàng</button>
+        </div>
+        <div class="fc-progress-row">
+          <span id="fcCnt" class="vsub">Thẻ 0 / 0</span>
+          <div style="flex:1;height:2px;background:var(--line);border-radius:99px;overflow:hidden"><div id="fcPB" style="height:100%;background:var(--am);border-radius:99px;width:0%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GOALS ── -->
+    <section class="view" id="goals">
+      <div class="vh">
+        <div><div class="vtitle" id="goals-title">Mục tiêu</div><div class="vsub" id="goals-sub"></div></div>
+        <button class="btn btn-dk" onclick="openAddGoal()" id="add-goal-btn">Mục tiêu mới</button>
+      </div>
+      <div class="g2 mb12" id="goals-grid"><div class="empty-state" style="grid-column:1/-1">Chưa có mục tiêu nào. Thêm ngay!</div></div>
+      <div class="card">
+        <div class="ctitle" id="habit-tracker-title">Theo dõi thói quen tuần này</div>
+        <div id="habit-tracker"></div>
+      </div>
+    </section>
+
+    <!-- ── SELFDEV ── -->
+    <section class="view" id="selfdev">
+      <div class="vh"><div><div class="vtitle" id="sd-title">Hoàn thiện bản thân</div><div class="vsub" id="sd-sub">Kỹ năng mềm, mindset, thói quen tích cực</div></div></div>
+      <div class="sdc" id="sd-cards"></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ctitle" id="hm-title">Bản đồ nhiệt 4 tuần</div>
+          <div class="hm" id="heatmap"></div>
+          <div style="display:flex;gap:5px;align-items:center;margin-top:8px;font-size:11px;color:var(--ink3)" id="hm-legend">ít <div style="width:8px;height:8px;background:var(--line);border-radius:2px"></div><div style="width:8px;height:8px;background:#d4e8d0;border-radius:2px"></div><div style="width:8px;height:8px;background:#a0c49a;border-radius:2px"></div><div style="width:8px;height:8px;background:var(--sg);border-radius:2px"></div> nhiều</div>
+        </div>
+        <div class="card">
+          <div class="ctitle" id="sci-title">Phương pháp khoa học</div>
+          <div id="sci-methods"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ANALYTICS ── -->
+    <section class="view" id="analytics">
+      <div class="vh">
+        <div><div class="vtitle" id="an-title">Phân tích</div><div class="vsub" id="an-sub">Nhìn lại hành trình 30 ngày qua</div></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-gh btn-sm" onclick="setPeriod(7,this)" id="an-7">7 ngày</button>
+          <button class="btn btn-dk btn-sm" onclick="setPeriod(30,this)" id="an-30">30 ngày</button>
+        </div>
+      </div>
+      <div class="g4 mb12">
+        <div class="card sp16"><div class="slabel" id="an-l1">Giờ tập trung</div><div class="snum am" id="an-focus">0<span style="font-size:14px">h</span></div><div class="ssub" id="an-focus-sub"></div></div>
+        <div class="card sp16"><div class="slabel" id="an-l2">Nhiệm vụ hoàn thành</div><div class="snum sg" id="an-tasks">0<span style="font-size:14px">%</span></div><div class="ssub" id="an-tasks-sub"></div></div>
+        <div class="card sp16"><div class="slabel" id="an-l3">Flashcard đã ôn</div><div class="snum bl" id="an-fc">0</div><div class="ssub" id="an-fc-sub"></div></div>
+        <div class="card sp16"><div class="slabel" id="an-l4">Tâm trạng TB</div><div class="snum am" id="an-mood">0</div><div class="ssub" id="an-mood-sub">/ 10 điểm</div></div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="ctitle" id="an-c1">Tập trung theo ngày</div>
+          <div class="bch" id="focus-chart"></div>
+          <div class="bcls" id="focus-chart-labels"></div>
+        </div>
+        <div class="card">
+          <div class="ctitle" id="an-c2">Phân bổ theo môn</div>
+          <div class="donut-row" id="subject-donut"></div>
+        </div>
+        <div class="card">
+          <div class="ctitle" id="an-c3">Xu hướng tâm trạng</div>
+          <div class="bch" id="mood-chart"></div>
+          <div class="ssub" style="margin-top:10px" id="an-mood-avg"></div>
+        </div>
+        <div class="card">
+          <div class="ctitle" id="an-c4">Hoàn thành nhiệm vụ</div>
+          <div style="font-family:'Lora',serif;font-size:40px;font-weight:400;color:var(--sg);margin-top:8px" id="an-completion">0<span style="font-size:16px">%</span></div>
+          <div class="pt" style="margin-top:10px"><div class="pf" id="an-comp-bar" style="width:0%;background:var(--sg)"></div></div>
+          <div class="ssub" style="margin-top:6px" id="an-comp-sub"></div>
+          <div style="margin-top:8px;font-size:12.5px;font-weight:500;color:var(--sg)" id="an-comp-trend"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <div class="mnav-items">
+    <div class="mni active" data-view="dashboard"><div class="mni-dot"></div><div id="mn-1">Tổng quan</div></div>
+    <div class="mni" data-view="focus"><div class="mni-dot"></div><div id="mn-2">Tập trung</div></div>
+    <div class="mni" data-view="tasks"><div class="mni-dot"></div><div id="mn-3">Nhiệm vụ</div></div>
+    <div class="mni" data-view="journal"><div class="mni-dot"></div><div id="mn-4">Nhật ký</div></div>
+    <div class="mni" data-view="goals"><div class="mni-dot"></div><div id="mn-5">Mục tiêu</div></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
